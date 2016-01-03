@@ -16,7 +16,7 @@ class GameStatus(object):
         numOfRows = 3
         numOfColumns = numOfRows
         
-        self.isFinished = False
+        self.isGameOver = False
         self.xWon = False
         self.xTurn = False
         self.grid = [[None] * numOfColumns] * numOfRows 

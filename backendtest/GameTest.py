@@ -8,12 +8,12 @@ class GameTest(unittest.TestCase):
 
     def testGameStatusNotFinished(self):
         status = GameStatus(0);
-        self.assertFalse(status.isFinished, "");
+        self.assertFalse(status.isGameOver, "");
 
     def testGameStatusFinished(self):
         status = GameStatus(0);
         status.isFinished = True;
-        self.assertTrue(status.isFinished, "");
+        self.assertTrue(status.isGameOver, "");
 
     def testGameIsNotOver(self):
         game = Game(0);
