@@ -44,7 +44,30 @@ class GameTest(unittest.TestCase):
         game = Game(0);
         array = [1, None, 0, 1, None];
         winner = None       
-        self.assertEqual(game.getWinner(array), winner, "")        
+        self.assertEqual(game.getWinner(array), winner, "")   
+        
+    def testDiagonaWin(self):
+        game = Game(0);       
+        testGrid = [[None, 0, 1], [None, 1, 0], [1, None, None]];        
+        game.gameStatus.grid = testGrid;
+        self.assertTrue(game.checkGameOver());
+        self.assertEqual(game.gameStatus.winner, 1, "")
+        
+    
+    
+    def testRowWin(self):
+        game = Game(0);       
+        testGrid = [[0, 1, 0], [0, 1, None], [0, None, None]];      
+        game.gameStatus.grid = testGrid;
+        self.assertTrue(game.checkGameOver());
+        self.assertEqual(game.gameStatus.winner, 0, "")
+        
+    def testColumnWin(self):     
+        game = Game(0);       
+        testGrid = [[0, 0, 0], [1, 1, None], [0, None, None]];         
+        game.gameStatus.grid = testGrid;
+        self.assertTrue(game.checkGameOver());
+        self.assertEqual(game.gameStatus.winner, 0, "")
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

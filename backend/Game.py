@@ -42,13 +42,13 @@ class Game(object):
     
     
     def checkGameOver(self):
-        self.gameStatus.gameIsOver = True
+        self.gameStatus.isGameOver = True
         
         # check all cells filled
         for col in range(len(self.gameStatus.grid)):
             for row in range(len(self.gameStatus.grid[col])):
                 if self.gameStatus.grid[col][row] is None:
-                    self.gameStatus.gameIsOver = False
+                    self.gameStatus.isGameOver = False
                 break
         
         # check all cells in a row, column or diagonal filled by one player
@@ -68,7 +68,11 @@ class Game(object):
                 row = [] * numOfRows
                 for j in range(numOfCols):                    
                     row.append(self.gameStatus.grid[j][i])
-                    self.gameStatus.winner = self.getWinner(row)
+                self.gameStatus.winner = self.getWinner(row) 
+                
+                if self.gameStatus.winner is not None:
+                    break # end loop
+                   
                 
             
         
@@ -87,19 +91,19 @@ class Game(object):
         # diagonal top right to bottom left
         if self.gameStatus.winner is None:      
             diagonal2 = [] * numOfCols
-            i = numOfCols
-            j = numOfRows
-            while i >= 0:
-                while j >= 0 :
-                    diagonal1.append(self.gameStatus.grid[i][j])
+            i = numOfCols            
+            j = 0
+            while i > 0:                
+                    diagonal2.append(self.gameStatus.grid[i-1][j])
                     i -= 1
-                    j -= 1
+                    j += 1
+                    
             self.gameStatus.winner = self.getWinner(diagonal2)
             
         if self.gameStatus.winner is not None:
                 self.gameStatus.isGameOver = True
         
-        return self.gameStatus.gameIsOver
+        return self.gameStatus.isGameOver
     
     def getWinner(self, array):
         winner = None
