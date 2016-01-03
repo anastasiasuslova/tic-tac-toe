@@ -31,14 +31,13 @@ class tictactoe_ui(object):
                     self.mainWindow.buttons[row][column].set_label("")
 
     def board_button_click(self, button, field):
-        if self.game.makeMove(*field):
-            pass
-        else:
+        if self.game.makeMove(*field) == False:
             self.mainWindow.status_label.set_label("incorrect move")
         self.update_board()
     
     def restart_button_click(self, button):
-        pass
+        self.game.resetGame()
+        self.update_board()
     
     def run(self):
         gtk.main()
