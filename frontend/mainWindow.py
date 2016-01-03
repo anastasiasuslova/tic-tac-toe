@@ -38,7 +38,7 @@ class mainWindow(object):
     
     def make_board(self):
         table = gtk.Table(rows=3, columns=3)
-        self.buttons = [[0 for i in xrange(3)] for i in xrange(3)]
+        self.buttons = [[None for i in xrange(3)] for i in xrange(3)]
         for row in xrange(3):
             for column in xrange(3):
                 button = gtk.Button("X")
