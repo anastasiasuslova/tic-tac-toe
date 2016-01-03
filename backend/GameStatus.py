@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 u'''
 Created on 3 янв. 2016 г.
 
