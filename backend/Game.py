@@ -60,10 +60,10 @@ class Game(object):
                 self.gameStatus.isGameOver = True
                 break # end loop
                 
+        numOfCols = len(self.gameStatus.grid)
+        numOfRows = len(self.gameStatus.grid[0])
         # rows
-        if self.gameStatus.winner is None:
-            numOfCols = len(self.gameStatus.grid)
-            numOfRows = len(self.gameStatus.grid[0])
+        if self.gameStatus.winner is None:            
             for i in range(numOfRows):
                 row = [] * numOfRows
                 for j in range(numOfCols):                    
@@ -73,12 +73,31 @@ class Game(object):
             
         
         # diagonal top left to bottom right
-        
+        if self.gameStatus.winner is None:      
+            diagonal1 = [] * numOfCols
+            i = 0
+            j = 0
+            while i < numOfCols:
+                while j < numOfRows:
+                    diagonal1.append(self.gameStatus.grid[i][j])
+                    i += 1
+                    j += 1
+            self.gameStatus.winner = self.getWinner(diagonal1)
             
         # diagonal top right to bottom left
-        
-        # set winner
-        # self.gameStatus.xWon
+        if self.gameStatus.winner is None:      
+            diagonal2 = [] * numOfCols
+            i = numOfCols
+            j = numOfRows
+            while i >= 0:
+                while j >= 0 :
+                    diagonal1.append(self.gameStatus.grid[i][j])
+                    i -= 1
+                    j -= 1
+            self.gameStatus.winner = self.getWinner(diagonal2)
+            
+        if self.gameStatus.winner is not None:
+                self.gameStatus.isGameOver = True
         
         return self.gameStatus.gameIsOver
     
