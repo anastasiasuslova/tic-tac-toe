@@ -13,8 +13,6 @@ class Game(object):
     '''
     X_PLAYER = 1
     O_PLAYER = 0
-    
-
 
     def __init__(self, params):
         '''
@@ -30,7 +28,7 @@ class Game(object):
     def makeMove(self, column, row):
         successful = False
         
-        if self.gameStatus.grid[column][row] is not None:
+        if self.gameStatus.grid[column][row] is None:
             self.gameStatus.grid[column][row] = self.currentPlayer
             
             if self.currentPlayer == self.X_PLAYER:
@@ -53,22 +51,30 @@ class Game(object):
                     self.gameStatus.gameIsOver = False
                 break
         
-        winner = None
         # check all cells in a row, column or diagonal filled by one player
         # columns       
         for col in self.gameStatus.grid:            
             self.gameStatus.winner = self.getWinner(col)
             
-            if winner is not None:
-                self.gameStatus.isGameOver = True            
-            
-            break # end loop
+            if self.gameStatus.winner is not None:
+                self.gameStatus.isGameOver = True
+                break # end loop
                 
         # rows
-        
+        if self.gameStatus.winner is None:
+            numOfCols = len(self.gameStatus.grid)
+            numOfRows = len(self.gameStatus.grid[0])
+            for i in range(numOfRows):
+                row = [] * numOfRows
+                for j in range(numOfCols):                    
+                    row.append(self.gameStatus.grid[j][i])
+                    self.gameStatus.winner = self.getWinner(row)
+                
+            
         
         # diagonal top left to bottom right
         
+            
         # diagonal top right to bottom left
         
         # set winner

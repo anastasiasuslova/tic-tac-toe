@@ -19,7 +19,7 @@ class GameStatus(object):
         
         self.isGameOver = False
         self.winner = None
-        self.xTurn = False
+        self.xTurn = False # todo rename to current player
         self.grid = [[None] * numOfColumns] * numOfRows 
         
     
