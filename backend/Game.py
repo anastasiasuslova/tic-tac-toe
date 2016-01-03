@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 u'''
 Created on 3 янв. 2016 г.
 
@@ -50,21 +51,40 @@ class Game(object):
             for row in range(len(self.gameStatus.grid[col])):
                 if self.gameStatus.grid[col][row] is None:
                     self.gameStatus.gameIsOver = False
-                    break
+                break
         
+        winner = None
         # check all cells in a row, column or diagonal filled by one player
-        # columns
-        grid1 = self.gameStatus.grid
-        for col in range(len(grid1)):            
-            a = 0
+        # columns       
+        for col in self.gameStatus.grid:            
+            self.gameStatus.winner = self.getWinner(col)
+            
+            if winner is not None:
+                self.gameStatus.isGameOver = True            
+            
+            break # end loop
                 
         # rows
         
-        # diagonal  
+        
+        # diagonal top left to bottom right
+        
+        # diagonal top right to bottom left
         
         # set winner
         # self.gameStatus.xWon
         
         return self.gameStatus.gameIsOver
     
-    
+    def getWinner(self, array):
+        winner = None
+        arraySize = len(array)
+        counter = 1
+        for i in range(arraySize):            
+            if (array[i] is not None) and (i > 0) and (array[i] == array[i-1]):
+                counter += 1
+                
+        if counter == arraySize:
+            winner = array[0]
+            
+        return winner

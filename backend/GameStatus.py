@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 u'''
 Created on 3 янв. 2016 г.
 
@@ -17,7 +18,7 @@ class GameStatus(object):
         numOfColumns = numOfRows
         
         self.isGameOver = False
-        self.xWon = False
+        self.winner = None
         self.xTurn = False
         self.grid = [[None] * numOfColumns] * numOfRows 
         
